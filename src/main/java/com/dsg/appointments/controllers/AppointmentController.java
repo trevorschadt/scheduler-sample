@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 // You may edit this file
 
+@lombok.extern.slf4j.
 @RestController
 @RequestMapping("appointments")
 class AppointmentController {
@@ -15,15 +16,38 @@ class AppointmentController {
         this.appointmentRetriever = appointmentRetriever;
     }
 
+    ResponseEntity<AppointmentsDTO> getAppointments(@RequestParam(name = "date", required = false) String date,
+                                        @RequestParam(name = "experience_id", required = false) java.util.UUID experienceId,
+                                        @RequestParam(name = "teammate_id", required = false) java.util.UUID teammateId) {
+
+         try {
+
+         
+         List<Appointment> results = appointmentRetriever.getAllAppointments(query);
+         List<AppointmentDto> mapped = results.stream().map(AppointmnetMapper.INSTANCE::appointmentToDto).collect(Collectors.toList());
+
+         if (mapped.isEmpty()) {
+              return ResponseEntity.notFound().build();
+         }
+
+         AppointmentsDTO result = AppointmentsDTO.builder().appointments(mapped).build();         
+         return ResponseEntity.ok(result);
+         } catch (Exception e) {
+              log.error(e);
+              return ResponseEntity.internalServerError();
+         }
+         
+     }
+
     /*
       TODO: Write an endpoint that can take zero or more of the following query parameters:
       - date: If specified (in YYYY-MM-DD format), only appointments on this date will be returned.
            - If the date is in an invalid format, return a 400 result.
-           - allowed values: yesterday, today, tomorrow
+           - existing values: yesterday, today, tomorrow
       - experience_id: If specified (UUID), only appointments of that experience will be returned
-           - allowed values: Constants.BASEBALL_LESSON_ID, Constants.BASKETBALL_LESSON_ID
+           - existing values: Constants.BASEBALL_LESSON_ID, Constants.BASKETBALL_LESSON_ID
       - teammate_id: If specified (UUID), only appointments for that teammate will be returned
-           - allowed values: Constants.JOHN_DOE_TEAMMATE_ID, Constants.MARY_SMITH_TEAMMATE_ID
+           - existing values: Constants.JOHN_DOE_TEAMMATE_ID, Constants.MARY_SMITH_TEAMMATE_ID
       If there are one or more results, return a 200 result with an AppointmentsDTO object containing
            a list of the valid appointments.
       If there are no results, return a 404 result.
