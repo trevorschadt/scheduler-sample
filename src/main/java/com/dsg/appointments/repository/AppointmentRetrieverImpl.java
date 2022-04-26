@@ -15,6 +15,8 @@ import java.util.UUID;
 
 import static com.dsg.appointments.Constants.*;
 
+// You may NOT edit this file
+
 @Component
 class AppointmentRetrieverImpl implements AppointmentRetriever {
     private static final LocalDate TODAY = LocalDate.now();

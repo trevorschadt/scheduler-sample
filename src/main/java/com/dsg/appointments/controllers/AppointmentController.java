@@ -4,6 +4,8 @@ import com.dsg.appointments.domain.ports.inbound.AppointmentRetriever;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+// You may edit this file
+
 @RestController
 @RequestMapping("appointments")
 class AppointmentController {

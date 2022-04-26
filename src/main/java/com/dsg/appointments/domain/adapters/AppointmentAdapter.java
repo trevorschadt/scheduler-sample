@@ -6,6 +6,8 @@ import org.springframework.stereotype.Component;
 
 import java.util.List;
 
+// You may edit this file
+
 @Component
 public class AppointmentAdapter implements AppointmentRetriever {
 
