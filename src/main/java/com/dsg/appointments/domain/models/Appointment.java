@@ -4,6 +4,7 @@ import lombok.Builder;
 import lombok.Value;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.UUID;
 
@@ -17,5 +18,10 @@ public class Appointment {
     String customerLastName;
     Experience experience;
     Teammate teammate;
-    Boolean canceled;
+    @Builder.Default
+    Boolean canceled = false;
+
+    public LocalDateTime getAppointmentDateTime() {
+        return LocalDateTime.of(date, time);
+    }
 }

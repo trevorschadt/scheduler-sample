@@ -12,4 +12,8 @@ public class Teammate {
     String firstName;
     String lastName;
     String bio;
+
+    public String getName() {
+        return "%s %s".formatted(firstName, lastName);
+    }
 }

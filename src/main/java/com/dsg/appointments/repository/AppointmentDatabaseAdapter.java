@@ -3,7 +3,6 @@ package com.dsg.appointments.repository;
 import com.dsg.appointments.domain.models.Appointment;
 import com.dsg.appointments.domain.models.Experience;
 import com.dsg.appointments.domain.models.Teammate;
-import com.dsg.appointments.domain.ports.outbound.AppointmentRetriever;
 import org.springframework.stereotype.Component;
 
 import java.time.LocalDate;
@@ -15,8 +14,10 @@ import java.util.UUID;
 
 import static com.dsg.appointments.Constants.*;
 
+// You may NOT edit this file
+
 @Component
-class AppointmentRetrieverImpl implements AppointmentRetriever {
+public class AppointmentDatabaseAdapter {
     private static final LocalDate TODAY = LocalDate.now();
     private static final LocalDate YESTERDAY = TODAY.minusDays(1);
     private static final LocalDate TOMORROW = TODAY.plusDays(1);
@@ -188,8 +189,6 @@ class AppointmentRetrieverImpl implements AppointmentRetriever {
         Collections.shuffle(ALL_APPOINTMENTS);
     }
 
-
-    @Override
     public List<Appointment> getAppointments() {
         return ALL_APPOINTMENTS;
     }
