@@ -31,21 +31,14 @@ class AppointmentController {
     }
 
     /*
-     * YOUR TASK: Write an endpoint that can take zero or more of the following
-     * query
-     * parameters:
-     * - date: If specified (in YYYY-MM-DD format), only appointments on this date
-     * will be returned.
+     * YOUR TASK: Modify the above endpoint so that it can take zero or more of the following query parameters:
+     * - date: If specified (in YYYY-MM-DD format), only appointments on this date will be returned.
      * - If the date is in an invalid format, return a 400 result.
-     * - experience_id: If specified (UUID), only appointments of that experience
-     * will be returned
-     * - teammate_id: If specified (UUID), only appointments for that teammate will
-     * be returned
-     * If there are one or more results, return a 200 result with an AppointmentsDTO
-     * object containing a list of the valid appointments.
+     * - experience_id: If specified (UUID), only appointments of that experience will be returned
+     * - teammate_id: If specified (UUID), only appointments for that teammate will be returned
+     * If there are one or more results, return a 200 result with an AppointmentsDTO object containing a list of the valid appointments.
      * If there are no results, return a 404 result.
-     * If the AppointmentService throws any error, log it and then return a 500
-     * result.
+     * If the AppointmentService throws any error, log it and then return a 500 result.
      */
 
 }
